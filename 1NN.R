@@ -12,7 +12,7 @@ n <- dim(xl)[2] - 1 # 2
 X <- seq(from = min(iris[, 3]), to = max(iris[, 3]), by = 0.1) # Petal.Length
 Y <- seq(from = min(iris[, 4]), to = max(iris[, 4]), by = 0.1) # Petal.Width
 
-distances <- matrix(NA, l, n) # матрица расстояний
+distances <- matrix(NA, l, n) # matrix distance
 
 for(i in X) {
   for(j in Y) {
@@ -20,7 +20,7 @@ for(i in X) {
     for(k in 1:l){
       distances[k, ] <- c(k, euclideanDistance(xl[k, 1:n], point))
     }
-    orderedxl <- xl[order(distances[ , 2]), ] # сортировка расстояний
+    orderedxl <- xl[order(distances[ , 2]), ] # sort distance
     points(point[1], point[2], pch = 21, bg = "white", col = colors[orderedxl$Species[1]])
   }
 }
