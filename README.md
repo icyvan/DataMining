@@ -28,3 +28,7 @@
 <img src="http://www.sciweavers.org/tex2img.php?eq=LOO%28%20%5Cmu%20%2C%20X%5El%29%20%3D%201%2Fl%20%20%5Csum_l%5Ei%20Q%28%20%5Cmu%20%28X%5El%2F%7Bx_i%7D%29%2C%7Bx_i%7D%29&bc=White&fc=Black&im=jpg&fs=12&ff=ccfonts,eulervm&edit=0" align="center" border="0" alt="LOO( \mu , X^l) = 1/l  \sum_l^i Q( \mu (X^l/{x_i}),{x_i})" width="275" height="50" />
 
 ПреимуществаLOO в том, что каждый объект ровно один раз участвует в контроле,а длина обучающих подвыборок лишь на единицу меньше длины полной выборки.Недостатком LOO является большая ресурсоёмкость, так как обучаться приходится L раз.
+
+Ниже представлены график зависимости LOO и карта классификафии
+
+https://github.com/icyvan/DataMining/blob/master/images/loo_knn.png
