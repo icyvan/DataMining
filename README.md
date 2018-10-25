@@ -10,7 +10,7 @@
 ---------------- 
  Метрический алгоритм классификации с обучающей выборкой <img src="http://www.sciweavers.org/tex2img.php?eq=X%5El&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=0" align="center" border="0" alt="X^l" width="21" height="19" /> относит объект u к тому классу y, для которого суммарный вес ближайших обучающих объектов <img src="http://www.sciweavers.org/tex2img.php?eq=W_y%28u%2CX%5El%29&bc=White&fc=Black&im=jpg&fs=12&ff=ccfonts,eulervm&edit=0" align="center" border="0" alt="W_y(u,X^l)" width="79" height="22" /> максимален:
  
-<img src="http://www.sciweavers.org/tex2img.php?eq=W_y%28u%2CX%5El%29%3D%20%5Csum%20w%28i%2Cu%29&bc=White&fc=Black&im=jpg&fs=12&ff=ccfonts,eulervm&edit=0" align="center" border="0" alt="W_y(u,X^l)= \sum w(i,u)" width="178" height="29" />,
+![](http://www.sciweavers.org/tex2img.php?eq=W_y%28u%2CX%5El%29%3D%20%5Csum%20w%28i%2Cu%29&bc=White&fc=Black&im=jpg&fs=12&ff=ccfonts,eulervm&edit=0),
  
 где весовая функция <img src="http://www.sciweavers.org/tex2img.php?eq=w%28i%2Cu%29&bc=White&fc=Black&im=jpg&fs=12&ff=ccfonts,eulervm&edit=0" align="center" border="0" alt="w(i,u)" width="57" height="19" /> оценивает степерь важности i-го соседа классификации объекта u.
 
