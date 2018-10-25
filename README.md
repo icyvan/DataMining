@@ -31,4 +31,4 @@
 
 Ниже представлены график зависимости LOO и карта классификафии
 
-https://github.com/icyvan/DataMining/blob/master/images/loo_knn.png
+![](https://github.com/icyvan/DataMining/blob/master/images/loo_knn.png)
