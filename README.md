@@ -6,13 +6,12 @@
 
 Метрические методы обучения - методы, основанные на анализе сходства объектов.
 
- Метрический алгоритм классификации с обучающей выборкой ![](https://latex.codecogs.com/gif.latex?X^l)  относит объект u к тому классу y, для которого суммарный вес ближайших обучающих объектов <img src="http://www.sciweavers.org/tex2img.php?eq=W_y%28u%2CX%5El%29&bc=White&fc=Black&im=jpg&fs=12&ff=ccfonts,eulervm&edit=0" align="center" border="0" alt="W_y(u,X^l)" width="79" height="22" /> максимален:
+ Метрический алгоритм классификации с обучающей выборкой ![](https://latex.codecogs.com/gif.latex?X^l)  относит объект u к тому классу y, для которого суммарный вес ближайших обучающих объектов ![](https://latex.codecogs.com/gif.latex?W_y(u,X^l)) максимален:
  
-![](http://www.sciweavers.org/tex2img.php?eq=W_y%28u%2CX%5El%29%3D%20%5Csum%20w%28i%2Cu%29&bc=White&fc=Black&im=jpg&fs=12&ff=ccfonts,eulervm&edit=0),
- 
-где весовая функция <img src="http://www.sciweavers.org/tex2img.php?eq=w%28i%2Cu%29&bc=White&fc=Black&im=jpg&fs=12&ff=ccfonts,eulervm&edit=0" align="center" border="0" alt="w(i,u)" width="57" height="19" /> оценивает степерь важности i-го соседа классификации объекта u.
+![](https://latex.codecogs.com/gif.latex?a(u;X^l)=arg&space;\max_{y\epsilon&space;Y}W_y(u,X^l)),
+где весовая функция ![](https://latex.codecogs.com/gif.latex?\omega&space;(i,u)) оценивает степерь важности i-го соседа классификации объекта u.
 
-Функция <img src="http://www.sciweavers.org/tex2img.php?eq=W_y%28u%2CX%5El%29&bc=White&fc=Black&im=jpg&fs=12&ff=ccfonts,eulervm&edit=0" align="center" border="0" alt="W_y(u,X^l)" width="79" height="22" /> - наз оценкой близости u к классу y.
+Функция ![](https://latex.codecogs.com/gif.latex?W_y(u,X^l)) - наз оценкой близости u к классу y.
 
 Алгоритм k ближайших соседей (kNN)
 ---------------- 
