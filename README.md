@@ -11,17 +11,47 @@
 ![](https://latex.codecogs.com/gif.latex?a(u;X^l)=arg&space;\max_{y\epsilon&space;Y}W_y(u,X^l)),
 где весовая функция ![](https://latex.codecogs.com/gif.latex?\omega&space;(i,u)) оценивает степерь важности i-го соседа классификации объекта u.
 
-Функция ![](https://latex.codecogs.com/gif.latex?W_y(u,X^l)) - наз оценкой близости u к классу y.
+Функция ![](https://latex.codecogs.com/gif.latex?W_y(u,X^l)) - наз оценкой близости *u* к классу *y*.
 
 Алгоритм k ближайших соседей (kNN)
 ---------------- 
  
-Алгоритм k ближайших соседей - **kNN** отоносит объект к тому классу элементов, которого больше среди k ближайших соседей <img src="http://www.sciweavers.org/tex2img.php?eq=x_u&bc=White&fc=Black&im=jpg&fs=12&ff=ccfonts,eulervm&edit=0" align="center" border="0" alt="x_u" width="19" height="12" />.
-Имеется некоторая выборка <img src="http://www.sciweavers.org/tex2img.php?eq=x%5El&bc=White&fc=Black&im=jpg&fs=12&ff=ccfonts,eulervm&edit=0" align="center" border="0" alt="x^l" width="17" height="18" />, состоящая из объектов <img src="http://www.sciweavers.org/tex2img.php?eq=x%28i%29%2C%20i%20%3D%201%2C%20...%2C%20l&bc=White&fc=Black&im=jpg&fs=12&ff=ccfonts,eulervm&edit=0" align="center" border="0" alt="x(i), i = 1, ..., l" width="108" height="19" /> (Мы будем испольховать Ирисы Фишера).
+Алгоритм k ближайших соседей - **kNN** отоносит объект *u* к тому классу элементов, которого больше среди k ближайших соседей ![](https://latex.codecogs.com/gif.latex?x_u).
 
-Для оценки близости классифицируемого объекта u к классу y алгоритм kNN использует следующую функцию:
+Мы используем выборку Ирисов Фишера(iris), содержащий 150 объектов разделенный на три класса по 50 элементов:setosa , versicolour и virginica. Каждый класс представлен четырьмя признаками: «Sepal.Length» (длина чашелистика), «Sepal.Width» (ширина чашелистика), «Petal.Length» (длина лепестка) и «Petal.Width» (ширина лепестка).
 
-<img src="http://www.sciweavers.org/tex2img.php?eq=W%28i%2Cu%29%3D%5Bi%20%5Cleq%20k%5D&bc=White&fc=Black&im=jpg&fs=12&ff=ccfonts,eulervm&edit=0" align="center" border="0" alt="W(i,u)=[i \leq k]" width="129" height="19" />
+Алгоритм выглядит следующим образом:
+
+1. Вычисляем расстояние в от классфицируемого объекта до элементов выборки.
+
+```diff
+euclideanDistance <- function(u, v) {
+  sqrt(sum((u - v)^2)) }
+```
+
+2. Сортируем расстояния в порядке возрастания и выбираем первые k элементов.
+
+sortObjectsByDist <- function(xl, z, metricFunction =
+euclideanDistance)
+{
+ l <- dim(xl)[1]
+ n <- dim(xl)[2] - 1
+
+3. Выбираем наиболее часто встречающийся класс среди k ближайших соседей.
+
+```diff
+kNN <- function(xl, z, k)  { 
+ orderedXl <- sortObjectsByDist(xl, z) # Сортируем выборку согласно классифицируемогообъекта
+ n <- dim(orderedXl)[2] - 1
+ classes <- orderedXl[1:k, n + 1] # Получаем классы первых k соседей
+ counts <- table(classes) # Составляем таблицу встречаемости каждого класса
+ class <- names(which.max(counts)) # Находим класс, который доминирует среди первых k соседей
+ return (class)
+}
+```
+
+
+
 
 Оптимальное значение параметра k определяют по критерию скользящего контроля с исключением объектов по одному (leave-one-out, LOO):
 
