@@ -18,11 +18,11 @@
  
 Алгоритм k ближайших соседей - **kNN** отоносит объект *u* к тому классу элементов, которого больше среди k ближайших соседей ![](https://latex.codecogs.com/gif.latex?x_u).
 
-Мы используем выборку Ирисов Фишера(iris), содержащий 150 объектов разделенный на три класса по 50 элементов:setosa , versicolour и virginica. Каждый класс представлен четырьмя признаками: «Sepal.Length» (длина чашелистика), «Sepal.Width» (ширина чашелистика), «Petal.Length» (длина лепестка) и «Petal.Width» (ширина лепестка).
+Мы используем выборку Ирисов Фишера (iris), содержащий 150 объектов разделенный на три класса по 50 элементов: setosa , versicolour и virginica. Каждый класс представлен четырьмя признаками: «Sepal.Length» (длина чашелистика), «Sepal.Width» (ширина чашелистика), «Petal.Length» (длина лепестка) и «Petal.Width» (ширина лепестка).
 
 Алгоритм выглядит следующим образом:
 
-1. Вычисляем расстояние в от классфицируемого объекта до элементов выборки.
+1. Вычисляем евклидово расстояние от классфицируемого объекта до элементов выборки.
 
 ```diff
 euclideanDistance <- function(u, v) {
@@ -30,22 +30,28 @@ euclideanDistance <- function(u, v) {
 ```
 
 2. Сортируем расстояния в порядке возрастания и выбираем первые k элементов.
-
-sortObjectsByDist <- function(xl, z, metricFunction =
-euclideanDistance)
-{
+```diff
+sortObjectsByDist <- function(xl, z, metricFunction = euclideanDistance) { # Сортируем объекты согласно расстояния до объекта z
  l <- dim(xl)[1]
  n <- dim(xl)[2] - 1
+ 
+ distances <- matrix(NA, l, 2)                                             # Создаём матрицу расстояний
+ for (i in 1:l)  {
+ distances[i, ] <- c(i, metricFunction(xl[i, 1:n], z))
+ }
+ orderedXl <- xl[order(distances[, 2]), ]                                  # Сортируем
+ return (orderedXl);
+```
 
 3. Выбираем наиболее часто встречающийся класс среди k ближайших соседей.
 
 ```diff
 kNN <- function(xl, z, k)  { 
- orderedXl <- sortObjectsByDist(xl, z) # Сортируем выборку согласно классифицируемогообъекта
+ orderedXl <- sortObjectsByDist(xl, z)      # Сортируем выборку согласно классифицируемого объекта
  n <- dim(orderedXl)[2] - 1
- classes <- orderedXl[1:k, n + 1] # Получаем классы первых k соседей
- counts <- table(classes) # Составляем таблицу встречаемости каждого класса
- class <- names(which.max(counts)) # Находим класс, который доминирует среди первых k соседей
+ classes <- orderedXl[1:k, n + 1]           # Получаем классы первых k соседей
+ counts <- table(classes)                   # Составляем таблицу встречаемости каждого класса
+ class <- names(which.max(counts))          # Находим класс, который доминирует среди первых k соседей
  return (class)
 }
 ```
