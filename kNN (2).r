@@ -47,8 +47,6 @@ kNN <- function(){
     print(vec[k])
   }
 }
-plot(
-  seq(1, 150), vec,
-  type="p", col="red", bg= "red", pch = 21, ylab = "Error", xlab = "k", main = "kNN LOO"
-)
+plot(seq(1, 150), vec,type="p", 
+     col="red", bg= "red", pch = 21, ylab = "Error", xlab = "k", main = "kNN LOO")
 

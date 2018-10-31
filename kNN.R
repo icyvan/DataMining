@@ -1,29 +1,41 @@
 colors <- c("setosa" = "red", "versicolor" = "green3", "virginica" = "blue")
-plot(iris[, 3:4], pch = 21, bg = colors[iris$Species], col = colors[iris$Species])
+plot(NULL, NULL, type = "l", xlim = c(min(iris[, 3]), max(iris[, 3])), ylim = c(min(iris[, 4]), max(iris[, 4])), xlab = 'Petal.Length', ylab = 'Petal.Width')
 
-euclideanDistance <- function(u, v) {
+euclideanDistance <- function(u, v) {         #Евклидово расстояние          
   sqrt(sum((u - v)^2))
 }
 
-sort <- function(xl, point, euclideanDistance)
-{
-  l <- dim(xl)[1]
-  n <- dim(xl)[2] - 1
+sortObjectsByDist <- function(xl, z, metricFunction = euclideanDistance) # Сортируем объекты согласно 
+{                                                                        # расстояния до объекта z
+l <- dim(xl)[1] # 150
+n <- dim(xl)[2] - 1 # 2
 }
 
-PentalWedth <- seq(from = min(iris[ , 3]), to = max(iris[ , 3]), by = 0.1) #РІСЃРµ СЃС‚СЂРѕРєРё РІ СЃС‚РѕР»Р±С†Рµ
-PentalLength <- seq(from = min(iris[ , 4]), to = max(iris[ , 4]), by = 0.1)
 
-for (i in PentalWedth)
-  for (j in PentalLength)
-    point <- c(i,j)
-distances <- matrix(NA, l, 2)
-for (k in 1:l)
+    distances <- matrix(NA, l, 2)             # матрица расстояний
+    for(p in 1:l) {
+      distances[p, ] <- c(p, euclideanDistance(xl[p, 1:n], point))
+    }
+    orderedxl <- xl[order(distances[ , 2]), ] # сортируем расстояния
+    return (orderedXl);
+    
+kNN <- function(xl, z, k)               #Применеям метод kNN
 {
-  distances[k, ] <- c(k, euclideanDistance(xl[k, 1:n], point))
-}
- orderedxl <- xl[order(euclideanDistance[ , 2], )] #СЃРѕСЂС‚РёСЂРѕРІРєР° СЂР°СЃСЃС‚РѕСЏРЅРёСЏ
-  classes <- orderedxl[1:k, n+1] #РёРјРµРЅР° РїРµСЂРІС‹С… k РєР»Р°СЃСЃРѕРІ РёР· orderedxl
-  count <- table(classes)  #table-РІРѕР·РІСЂР°С‰Р°РµС‚ С‚Р°Р±Р»РёС†Сѓ СЃ С‡aСЃС‚РѕС‚Р°РјРё РІСЃС‚СЂРµС‡Р°РµРјРѕСЃС‚Рё РєР°Р¶РґРѕРіРѕ Р·РЅР°С‡РµРЅРёСЏ classes
+  orderedXl <- sortObjectsByDist(xl, z) # Сортируем выборку согласно классифицируемого объекта
+  n <- dim(orderedXl)[2] - 1
+    classes <- orderedxl[1:k, n + 1]    # Получаем класс первых k соседей
+    counts <- table(classes)            # Составляем таблицу встречаемости каждого класса
+    classname <- which.max(counts)      # Находим класс, который доминирует среди первых k соседей
+    return (class)
+}                             
+
   
-  
+    colors <- c("setosa" = "red", "versicolor" = "green3", "virginica" = "blue") # Рисуем выборку
+    plot(iris[, 3:4], pch = 21, bg = colors[iris$Species], col = colors[iris$Species], asp = 1)
+    
+    z <- c(2.7, 1)                      # Классификация одного заданного объекта
+    xl <- iris[, 3:5]
+    class <- kNN(xl, z, k=6)
+    points(z[1], z[2], pch = 22, bg = colors[class], asp = 1)
+    
+legend("bottomright", c("virginica", "versicolor", "setosa"), pch = c(15,15,15), col = c("blue", "green3", "red"))
