@@ -15,9 +15,9 @@
 
 Алгоритм ближайшего соседа (1NN)
 ---------------- 
-**Алгоритм ближайшего соседа - 1NN** относит классифицируемый объект ![](https://latex.codecogs.com/gif.latex?u\theta&space;X^l) к тому классу, которому принадлежит его ближайший сосед.
+**Алгоритм ближайшего соседа - 1NN** относит классифицируемый объект ![](https://github.com/icyvan/DataMining/blob/master/images/1NN_1.png) к тому классу, которому принадлежит его ближайший сосед.
 
-Результат реализованного [1NN][https://github.com/icyvan/DataMining/blob/master/1NN.R]:
+Результат реализованного [1NN](https://github.com/icyvan/DataMining/blob/master/1NN.R):
 
 ![](https://github.com/icyvan/DataMining/blob/master/images/1NN_1.png)
 Алгоритм k ближайших соседей (kNN)
