@@ -46,21 +46,21 @@ step <- 5
 Ox <- seq(from = 1, to = 150, by = step) # k
 Oy <- c() # LOO
 
-LOO_opt <- 1
+LOO_opt <- 1                      # Óñòàíàâëèâàåì íà÷àëüíûå çíà÷åíèÿ
 k_opt <- 1
 for(k in Ox) {
   Q <- 0                          # Çàâîäèì ñ÷¸ò÷èê è ïğèñâàèâàåì åìó çíà÷åíèå 0
   for(i in 1:l) {
     iris_new <- iris[-i, ]        # Íîâàÿ âûáîğêà áåç X_i ıëåìåíòà
     point <- iris[i, 3:4]
-    if(knn(iris_new, point, k) != iris[i, 5]) {
-      Q <- Q + 1
+    if(knn(iris_new, point, k) != iris[i, 5]) {  # Åñëè ïîÿâèëàñü îøèáêà,
+      Q <- Q + 1                                 # òî óâåëè÷èâàåì ñ÷¸ò÷èê íà åäèíèöó
     } 
   }
   LOO <- Q/l
   Oy <- c(Oy, LOO)
   
-  if(LOO < LOO_opt) {
+  if(LOO < LOO_opt) {           
     LOO_opt <- LOO
     k_opt <- k
   }
