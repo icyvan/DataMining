@@ -55,6 +55,10 @@ kNN <- function(xl, z, k)  {
  return (class)
 }
 ```
+Результат алгоритма kNN:
+
+![](https://github.com/icyvan/DataMining/blob/master/images/kNN2.png)
+
 **Оптимизация k**
 
 Оптимальное значение параметра k определяют по критерию скользящего контроля с исключением объектов по одному (leave-one-out, LOO). Для каждого объекта ![](https://latex.codecogs.com/gif.latex?x_i&space;\epsilon&space;X^l) проверяется, равильно ли он классифицируется по своим *k* ближайшим соседям.
