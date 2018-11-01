@@ -55,7 +55,7 @@ kNN <- function(xl, z, k)  {
  return (class)
 }
 ```
-Результат алгоритма kNN:
+Результат реализацмм [kNN](https://github.com/icyvan/DataMining/blob/master/kNN.R):
 
 ![](https://github.com/icyvan/DataMining/blob/master/images/kNN2.png)
 
