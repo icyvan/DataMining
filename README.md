@@ -71,6 +71,6 @@ kNN <- function(xl, z, k)  {
 
 Недостатком LOO является большая ресурсоёмкость, так как обучаться приходится L раз.
 
-Ниже представлены график зависимости LOO от kNN и карта классификафии всех объектов:
+Ниже представлены график зависимости [LOO](https://github.com/icyvan/DataMining/blob/master/kNN_LOO.r) от kNN и карта классификафии всех объектов:
 
 ![](https://github.com/icyvan/DataMining/blob/master/images/loo_knn.png)
