@@ -1,41 +1,41 @@
 colors <- c("setosa" = "red", "versicolor" = "green3", "virginica" = "blue")
 plot(NULL, NULL, type = "l", xlim = c(min(iris[, 3]), max(iris[, 3])), ylim = c(min(iris[, 4]), max(iris[, 4])), xlab = 'Petal.Length', ylab = 'Petal.Width')
 
-euclideanDistance <- function(u, v) {         # Åâêëèäîâî ðàññòîÿíèå          
+euclideanDistance <- function(u, v) {         # Ð•Ð²ÐºÐ»Ð¸Ð´Ð¾Ð²Ð¾ Ñ€Ð°ÑÑÑ‚Ð¾ÑÐ½Ð¸Ðµ          
   sqrt(sum((u - v)^2))
 }
 
-sortObjectsByDist <- function(xl, z, metricFunction = euclideanDistance) # Ñîðòèðóåì îáúåêòû ñîãëàñíî 
-{                                                                        # ðàññòîÿíèÿ äî îáúåêòà z
-l <- dim(xl)[1] # 150
-n <- dim(xl)[2] - 1 # 2
+sortObjectsByDist <- function(xl, z, metricFunction = euclideanDistance) # Ð¡Ð¾Ñ€Ñ‚Ð¸Ñ€ÑƒÐµÐ¼ Ð¾Ð±ÑŠÐµÐºÑ‚Ñ‹ ÑÐ¾Ð³Ð»Ð°ÑÐ½Ð¾ 
+{                                                                        # Ñ€Ð°ÑÑÑ‚Ð¾ÑÐ½Ð¸Ñ Ð´Ð¾ Ð¾Ð±ÑŠÐµÐºÑ‚Ð° z
+  l <- dim(xl)[1] # 150
+  n <- dim(xl)[2] - 1 # 2
 }
 
 
-    distances <- matrix(NA, l, 2)             # ìàòðèöà ðàññòîÿíèé
-    for(p in 1:l) {
-      distances[p, ] <- c(p, euclideanDistance(xl[p, 1:n], point))
-    }
-    orderedxl <- xl[order(distances[ , 2]), ] # ñîðòèðóåì ðàññòîÿíèÿ
-    return (orderedXl);
-    
-kNN <- function(xl, z, k)               #Ïðèìåíåÿì ìåòîä kNN
+distances <- matrix(NA, l, 2)             # Ð¼Ð°Ñ‚Ñ€Ð¸Ñ†Ð° Ñ€Ð°ÑÑÑ‚Ð¾ÑÐ½Ð¸Ð¹
+for(p in 1:l) {
+  distances[p, ] <- c(p, euclideanDistance(xl[p, 1:n], point))
+}
+orderedxl <- xl[order(distances[ , 2]), ] # ÑÐ¾Ñ€Ñ‚Ð¸Ñ€ÑƒÐµÐ¼ Ñ€Ð°ÑÑÑ‚Ð¾ÑÐ½Ð¸Ñ
+return (orderedXl);
+
+kNN <- function(xl, z, k)               #ÐŸÑ€Ð¸Ð¼ÐµÐ½ÐµÑÐ¼ Ð¼ÐµÑ‚Ð¾Ð´ kNN
 {
-  orderedXl <- sortObjectsByDist(xl, z) # Ñîðòèðóåì âûáîðêó ñîãëàñíî êëàññèôèöèðóåìîãî îáúåêòà
+  orderedXl <- sortObjectsByDist(xl, z) # Ð¡Ð¾Ñ€Ñ‚Ð¸Ñ€ÑƒÐµÐ¼ Ð²Ñ‹Ð±Ð¾Ñ€ÐºÑƒ ÑÐ¾Ð³Ð»Ð°ÑÐ½Ð¾ ÐºÐ»Ð°ÑÑÐ¸Ñ„Ð¸Ñ†Ð¸Ñ€ÑƒÐµÐ¼Ð¾Ð³Ð¾ Ð¾Ð±ÑŠÐµÐºÑ‚Ð°
   n <- dim(orderedXl)[2] - 1
-    classes <- orderedxl[1:k, n + 1]    # Ïîëó÷àåì êëàññ ïåðâûõ k ñîñåäåé
-    counts <- table(classes)            # Ñîñòàâëÿåì òàáëèöó âñòðå÷àåìîñòè êàæäîãî êëàññà
-    classname <- which.max(counts)      # Íàõîäèì êëàññ, êîòîðûé äîìèíèðóåò ñðåäè ïåðâûõ k ñîñåäåé
-    return (class)
+  classes <- orderedxl[1:k, n + 1]    # ÐŸÐ¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ ÐºÐ»Ð°ÑÑ Ð¿ÐµÑ€Ð²Ñ‹Ñ… k ÑÐ¾ÑÐµÐ´ÐµÐ¹
+  counts <- table(classes)            # Ð¡Ð¾ÑÑ‚Ð°Ð²Ð»ÑÐµÐ¼ Ñ‚Ð°Ð±Ð»Ð¸Ñ†Ñƒ Ð²ÑÑ‚Ñ€ÐµÑ‡Ð°ÐµÐ¼Ð¾ÑÑ‚Ð¸ ÐºÐ°Ð¶Ð´Ð¾Ð³Ð¾ ÐºÐ»Ð°ÑÑÐ°
+  classname <- which.max(counts)      # ÐÐ°Ñ…Ð¾Ð´Ð¸Ð¼ ÐºÐ»Ð°ÑÑ, ÐºÐ¾Ñ‚Ð¾Ñ€Ñ‹Ð¹ Ð´Ð¾Ð¼Ð¸Ð½Ð¸Ñ€ÑƒÐµÑ‚ ÑÑ€ÐµÐ´Ð¸ Ð¿ÐµÑ€Ð²Ñ‹Ñ… k ÑÐ¾ÑÐµÐ´ÐµÐ¹
+  return (class)
 }                             
 
-  
-    colors <- c("setosa" = "red", "versicolor" = "green3", "virginica" = "blue") # Ðèñóåì âûáîðêó
-    plot(iris[, 3:4], pch = 21, bg = colors[iris$Species], col = colors[iris$Species], asp = 1)
-    
-    z <- c(2.7, 1)                      # Êëàññèôèêàöèÿ îäíîãî çàäàííîãî îáúåêòà
-    xl <- iris[, 3:5]
-    class <- kNN(xl, z, k=6)
-    points(z[1], z[2], pch = 22, bg = colors[class], asp = 1)
-    
+
+colors <- c("setosa" = "red", "versicolor" = "green3", "virginica" = "blue") # Ð Ð¸ÑÑƒÐµÐ¼ Ð²Ñ‹Ð±Ð¾Ñ€ÐºÑƒ
+plot(iris[, 3:4], pch = 21, bg = colors[iris$Species], col = colors[iris$Species], asp = 1)
+
+z <- c(2.7, 1)                      # ÐšÐ»Ð°ÑÑÐ¸Ñ„Ð¸ÐºÐ°Ñ†Ð¸Ñ Ð¾Ð´Ð½Ð¾Ð³Ð¾ Ð·Ð°Ð´Ð°Ð½Ð½Ð¾Ð³Ð¾ Ð¾Ð±ÑŠÐµÐºÑ‚Ð°
+xl <- iris[, 3:5]
+class <- kNN(xl, z, k=6)
+points(z[1], z[2], pch = 22, bg = colors[class], asp = 1)
+
 legend("bottomright", c("virginica", "versicolor", "setosa"), pch = c(15,15,15), col = c("blue", "green3", "red"))
