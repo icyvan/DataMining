@@ -20,6 +20,7 @@
 Результат реализованного [1NN](https://github.com/icyvan/DataMining/blob/master/1NN.R):
 
 ![](https://github.com/icyvan/DataMining/blob/master/images/1NN_1.png)
+
 Алгоритм k ближайших соседей (kNN)
 ---------------- 
  
