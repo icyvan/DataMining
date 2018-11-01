@@ -1,5 +1,5 @@
-colors <- c("setosa" = "red", "versicolor" = "green3", "virginica" = "blue")
-plot(NULL, NULL, type = "l", xlim = c(min(iris[, 3]), max(iris[, 3])), ylim = c(min(iris[, 4]), max(iris[, 4])), xlab = 'Petal.Length', ylab = 'Petal.Width')
+#colors <- c("setosa" = "red", "versicolor" = "green3", "virginica" = "blue")
+#plot(NULL, NULL, type = "l", xlim = c(min(iris[, 3]), max(iris[, 3])), ylim = c(min(iris[, 4]), max(iris[, 4])), xlab = 'Petal.Length', ylab = 'Petal.Width')
 
 euclideanDistance <- function(u, v) {         # Евклидово расстояние          
   sqrt(sum((u - v)^2))
