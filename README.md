@@ -93,7 +93,7 @@ kwNN отличается от kNN тем, что для оценки близо
 ![](https://latex.codecogs.com/gif.latex?W(i,u)&space;=&space;[i\leq&space;k]&space;w(i))
 , где *i* - порядок соседа по расстоянию к классифицируемому объекту *u*, а *w(i)* - весовая функция.
 
-Возьмем за вес https://latex.codecogs.com/gif.latex?w(i)=q^i,&space;q\epsilon&space;(0,1).
+Возьмем за вес ![https://latex.codecogs.com/gif.latex?w(i)=q^i,&space;q\epsilon&space;(0,1)].
 
 Реализация весовой функции:
 
