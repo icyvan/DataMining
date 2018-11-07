@@ -83,3 +83,32 @@ kNN <- function(xl, z, k)  {
 Ниже представлены график зависимости [LOO](https://github.com/icyvan/DataMining/blob/master/kNN_LOO.r) от kNN и карта классификафии всех объектов:
 
 ![](https://github.com/icyvan/DataMining/blob/master/images/loo_knn.png)
+
+k оптимальное равняется 6.
+
+Алгоритм k взвешенных ближайших соседей - kwNN
+--------------
+kwNN отличается от kNN тем, что для оценки близости используется весовая функция:
+
+![](https://latex.codecogs.com/gif.latex?W(i,u)&space;=&space;[i\leq&space;k]&space;w(i))
+, где *i* - порядок соседа по расстоянию к классифицируемому объекту *u*, а *w(i)* - весовая функция.
+
+Возьмем за вес https://latex.codecogs.com/gif.latex?w(i)=q^i,&space;q\epsilon&space;(0,1).
+
+Реализация весовой функции:
+
+```diff
+ m <- c("setosa" = 0, "versicolor" = 0, "virginica" = 0)
+  for (i in seq(1:k)){
+    w <- q ^ i
+    m[[classes[i]]] <- m[[classes[i]]] + w
+  }
+```
+Ниже представлены график зависимости [LOO от kwNN](https://github.com/icyvan/DataMining/blob/master/LOO_kwNN.r) и карта классификафии всех объектов:
+
+![](https://github.com/icyvan/DataMining/blob/master/images/kwNN.png)
+
+Лучший результат при k = 6 и q = 1 равен 0.33.
+
+
+
