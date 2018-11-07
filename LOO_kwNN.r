@@ -38,27 +38,27 @@ segment <- seq(from = 0.0, to = 1.0, by = 0.05)
 
 LOOforkwNN <- function(classificator){
   j <- 1
-  vec <- seq(1, length(segment))
+  LOO <- seq(1, length(segment))
   
   for (q in segment) {
-    cnt <- 0
+    Q <- 0
     for (i in 1:150) {
       x_el <-c(iris[i, 3], iris[i, 4]) 
       x_sample <- iris[-i, 3:5]  
       class <- classificator(x_sample, x_el, k=6, q)
       
       if (iris[i, 5] != class) { 
-        cnt <- cnt + 1
+        Q <- Q + 1
       }
     }
-    vec[j] <- cnt / dim(iris)[1]
+    LOO[j] <-Q / dim(iris)[1]
     j <- j + 1
   }
-  return (vec)
+  return (LOO)
 }
 
 arr <- LOOforkwNN(kwNN)
-tochka = which(arr == min(arr))
+p = which(arr == min(arr))
 arr2 <- (seq(from = 0.0, to = 1.0, by = 0.05))
 plot(arr2, arr, type = "l", xlab = "q", ylab="LOO", main = "LOO kwNN")
-points(arr2[tochka], arr[tochka], pch = 19, col = "red")
+points(arr2[p], arr[p], pch = 19, col = "red")
