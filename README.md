@@ -105,11 +105,14 @@ kwNN отличается от kNN тем, что для оценки близо
 Реализация весовой функции:
 
 ```diff
- m <- c("setosa" = 0, "versicolor" = 0, "virginica" = 0)
-  for (i in seq(1:k)){
-    w <- q ^ i
-    m[[classes[i]]] <- m[[classes[i]]] + w
+  m <- c("setosa" = 0, "versicolor" = 0, "virginica" = 0)   # Устанавливаем начальные веса
+  for (i in seq(1:k)){                                      # Запускаем цикл по упорядоченной последовательности от 1 до k
+    w <- q ^ i                                              # Реализуем весовую функцию
+    m[[classes[i]]] <- m[[classes[i]]] + w                  
   }
+ class <- names(which.max(m))                               # Возвращаем класс с самым большим весом
+  return (class)
+}
 ```
 Ниже представлены график зависимости [LOO от kwNN](https://github.com/icyvan/DataMining/blob/master/LOO_kwNN.r) и карта классификафии всех объектов:
 
