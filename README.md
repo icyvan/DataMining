@@ -135,8 +135,9 @@ kwNN отличается от kNN тем, что для оценки близо
 
 | № | ядро K(r)     | Формула                                                                                                                                                                                             |
 |---|---------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 1 | Епанечникова  | ![](https://latex.codecogs.com/gif.latex?E(r)=&space;\frac{3}{4}(1-r^{2})\left&space;[&space;\left&space;|&space;r&space;\right&space;|&space;\leq&space;1&space;\right&space;])|
-| 2 | Квартическое  | ![](https://latex.codecogs.com/gif.latex?Q(r)=&space;\frac{15}{16}(1-r^{2})^{2}\left&space;[&space;\left&space;|&space;r&space;\right&space;|&space;\leq&space;1&space;\right&space;])|
-| 3 | Треугольное   | ![](https://latex.codecogs.com/gif.latex?T(r)=(1-\left&space;|&space;r&space;\right&space;|)&space;\left&space;[&space;\left&space;|&space;r&space;\right&space;|\leq&space;1&space;\right&space;]))|
+| 1 | Епанечникова  | ![](https://latex.codecogs.com/gif.latex?E(r)=&space;\frac{3}{4}(1-r^{2})\left&space;[&space;r\leq&space;1&space;\right&space;])|
+| 2 | Квартическое  | ![](https://latex.codecogs.com/gif.latex?Q(r)=&space;\frac{15}{16}(1-r^{2})^{2}\left&space;[&space;r\leq&space;1&space;\right&space;])|
+| 3 | Треугольное   | ![](https://latex.codecogs.com/gif.latex?T(r)=(1-\left&space;|&space;r&space;\right&space;|)&space;\left&space;[&space;r\leq&space;1&space;\right&space;]))|
 | 4 | Гауссовское   | ![](https://latex.codecogs.com/gif.latex?G(r)=(2\pi&space;)^{-\frac{1}{2}}e^{-\frac{1}{2}r^{2}})|
-| 5 | Прямоугольное | ![](https://latex.codecogs.com/gif.latex?\Pi&space;(r)=\frac{1}{2}\left&space;[&space;\left&space;|&space;r&space;\right&space;|&space;\leq&space;1\right&space;]))|
+| 5 | Прямоугольное | ![](https://latex.codecogs.com/gif.latex?\Pi&space;(r)=\frac{1}{2}\left&space;[&space;r\leq&space;1\right&space;])|
+
