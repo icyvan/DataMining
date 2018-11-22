@@ -121,6 +121,10 @@ kwNN отличается от kNN тем, что для оценки близо
 
 Лучший результат при k = 6 и q = 1 равен 0.33.
 
-Метод Парзеновского окна
+Метод парзеновского окна
 -----------
-В этом методе мы рассматриваем весовую функцию ![](https://latex.codecogs.com/gif.latex?w(i,u)), как функцию зависящую от расстояния ![](https://latex.codecogs.com/gif.latex?\rho&space;(u,x_{(i))}^{u}))
+В этом методе мы рассматриваем весовую функцию ![](https://latex.codecogs.com/gif.latex?w(i,u)), как функцию зависящую от расстояния ![](https://latex.codecogs.com/gif.latex?\rho&space;(u,x_{(i))}^{u}) :
+![](https://latex.codecogs.com/gif.latex?w(i,u)=K((1/h)\rho(u,x_{u}^{(i)}))), где *K*-функция ядра(окна).
+Парзеновская оценка плотности имеет вид:
+![](https://latex.codecogs.com/gif.latex?a(x;X^{l},h)=arg\max_{y\epsilon&space;Y}\lambda&space;_{y}\sum_{i:y_{i}=y}&space;K(\frac{\rho(x,x_{i})}{h}))
+
