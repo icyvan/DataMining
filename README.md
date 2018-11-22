@@ -125,6 +125,17 @@ kwNN отличается от kNN тем, что для оценки близо
 -----------
 В этом методе мы рассматриваем весовую функцию ![](https://latex.codecogs.com/gif.latex?w(i,u)), как функцию зависящую от расстояния ![](https://latex.codecogs.com/gif.latex?\rho&space;(u,x_{(i))}^{u}) :
 ![](https://latex.codecogs.com/gif.latex?w(i,u)=K((1/h)\rho(u,x_{u}^{(i)}))), где *K*-функция ядра(окна).
+
 Парзеновская оценка плотности имеет вид:
+
 ![](https://latex.codecogs.com/gif.latex?a(x;X^{l},h)=arg\max_{y\epsilon&space;Y}\lambda&space;_{y}\sum_{i:y_{i}=y}&space;K(\frac{\rho(x,x_{i})}{h}))
 
+Ядро выбирается из нижеприведенного набора ядер:
+
+| № | ядро K(r)     | Формула                                                                                                                                                                                             |
+|---|---------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1 | Епанечникова  | ![](https://latex.codecogs.com/gif.latex?E(r)=\frac{3}{4}(1-r^{2})\left&space;[&space;\left&space;|&space;r&space;\right&space;|&space;\leq&space;1\right&space;])                                  |
+| 2 | Квартическое  | ![](https://latex.codecogs.com/gif.latex?Q(r)=\frac{15}{16}(1-r^{2})^{2}&space;\left&space;[&space;\left&space;|&space;r&space;\right&space;|\leq&space;1&space;\right&space;])                     |
+| 3 | Треугольное   | ![](https://latex.codecogs.com/gif.latex?T(r)=(1-\left&space;|&space;r&space;\right&space;|)&space;\left&space;[&space;\left&space;|&space;r&space;\right&space;|\leq&space;1&space;\right&space;]) |
+| 4 | Гауссовское   | ![](https://latex.codecogs.com/gif.latex?G(r)=(2\pi&space;)^{-\frac{1}{2}}e^{-\frac{1}{2}r^{2}})                                                                                                    |
+| 5 | Прямоугольное | ![](https://latex.codecogs.com/gif.latex?\Pi&space;(r)=\frac{1}{2}\left&space;[&space;\left&space;|&space;r&space;\right&space;|&space;\leq&space;1\right&space;])                                  |
