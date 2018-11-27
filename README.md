@@ -1,3 +1,11 @@
+## Навигация
+* [Метрические алгоритмы классификации](#метрические-алгоритмы-классификации)
+   * [Алгоритм ближайшего соседа (1NN)](#алгоритм-ближайшего-соседа-1nn)
+   * [Алгоритм k ближайших соседей (kNN)](#алгоритм-k-ближайших-соседей-knn)
+   * [Алгоритм k взвешенных ближайших соседей (kwNN)](#алгоритм-k-взвешенных-ближайших-соседей-kwnn)
+   * [Метод парзеновского окна](#метод-парзеновского-окна)
+   * [Метод потенциальных функций](#метод-потенциальных-функций)
+
 # Метрические алгоритмы классификации
 
 **Метрический алгоритм** - алгоритм классификации основанный на оценке близости объектов, используя функцию расстояния. 
@@ -83,3 +91,85 @@ kNN <- function(xl, z, k)  {
 Ниже представлены график зависимости [LOO](https://github.com/icyvan/DataMining/blob/master/kNN_LOO.r) от kNN и карта классификафии всех объектов:
 
 ![](https://github.com/icyvan/DataMining/blob/master/images/loo_knn.png)
+
+k оптимальное равняется 6.
+
+Алгоритм k взвешенных ближайших соседей (kwNN)
+--------------
+kwNN отличается от kNN тем, что для оценки близости используется весовая функция:
+
+![](https://latex.codecogs.com/gif.latex?W(i,u)&space;=&space;[i\leq&space;k]&space;w(i))
+, где *i* - порядок соседа по расстоянию к классифицируемому объекту *u*, а *w(i)* - весовая функция.
+
+Возьмем за вес ![](https://latex.codecogs.com/gif.latex?w(i)=q^i,&space;q\epsilon&space;(0,1)).
+
+Реализация весовой функции:
+
+```diff
+  m <- c("setosa" = 0, "versicolor" = 0, "virginica" = 0)   # Устанавливаем начальные веса
+  for (i in seq(1:k)){                                      # Запускаем цикл по упорядоченной посл-ти 
+    w <- q ^ i                                              # Реализуем весовую функцию
+    m[[classes[i]]] <- m[[classes[i]]] + w                  
+  }
+ class <- names(which.max(m))                               # Возвращаем класс с самым большим весом
+  return (class)
+}
+```
+Ниже представлены график зависимости [LOO от kwNN](https://github.com/icyvan/DataMining/blob/master/LOO_kwNN.r) и карта классификафии всех объектов:
+
+![](https://github.com/icyvan/DataMining/blob/master/images/kwNN.png)
+
+Лучший результат при k = 6 и q = 1 равен 0.33.
+
+Метод парзеновского окна
+-----------
+В этом методе мы рассматриваем весовую функцию ![](https://latex.codecogs.com/gif.latex?w(i,u)), как функцию зависящую от расстояния ![](https://latex.codecogs.com/gif.latex?\rho&space;(u,x_{(i))}^{u}) :
+![](https://latex.codecogs.com/gif.latex?w(i,u)=K((1/h)\rho(u,x_{u}^{(i)}))), где *K*-функция ядра(окна).
+
+Парзеновская оценка плотности имеет вид:
+
+![](https://latex.codecogs.com/gif.latex?a(x;X^{l},h)=arg\max_{y\epsilon&space;Y}\lambda&space;_{y}\sum_{i:y_{i}=y}&space;K(\frac{\rho(x,x_{i})}{h}))
+
+Ядро выбирается из нижеприведенного набора ядер:
+
+| № | ядро K(r)     | Формула                                                                                                                                                                                             |
+|---|---------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1 | Епанечникова  | ![](https://latex.codecogs.com/gif.latex?E(r)=&space;\frac{3}{4}(1-r^{2})\left&space;[&space;r\leq&space;1&space;\right&space;])|
+| 2 | Квартическое  | ![](https://latex.codecogs.com/gif.latex?Q(r)=&space;\frac{15}{16}(1-r^{2})^{2}\left&space;[&space;r\leq&space;1&space;\right&space;])|
+| 3 | Треугольное   | ![](https://latex.codecogs.com/gif.latex?T(r)=(1-r)&space;\left&space;[&space;r\leq&space;1&space;\right&space;])|
+| 4 | Гауссовское   | ![](https://latex.codecogs.com/gif.latex?G(r)=(2\pi&space;)^{-\frac{1}{2}}e^{-\frac{1}{2}r^{2}})|
+| 5 | Прямоугольное | ![](https://latex.codecogs.com/gif.latex?\Pi&space;(r)=\frac{1}{2}\left&space;[&space;r\leq&space;1\right&space;])|
+
+В этом алгоритме для классифицируемой точки строится окружность(окна). Точки не попавшие в эту окружность, с заданной шириной h, отсеиваются, а попавшим присваивается вес и суммируется их колличество. Так, классифицируемая точка присваивается классу с наибольшим весом.
+
+Реализация алгоритма:
+```diff
+ PW <- function(xl, z, h) 
+{ 
+  orderedXl <- sortObjectsByDist(xl, z) 
+  
+  for(i in 1:150){
+    orderedXl[i,3] <- func_ep(orderedXl[i,2],h) 
+  }
+  
+  b1 <- c('setosa', 'versicolor', 'virginica')
+  b2 <- c(0,0,0)
+  
+  b2[1]=sum(orderedXl[orderedXl$Species=='setosa', 3])
+  b2[2]=sum(orderedXl[orderedXl$Species=='versicolor', 3])
+  b2[3]=sum(orderedXl[orderedXl$Species=='virginica', 3])
+  
+  amo <- cbind(b1,b2)
+  
+  if(amo[1,2]==0&&amo[2,2]==0&&amo[3,2]==0){
+    class <- 'white'
+  }
+  else{
+    class <- b1[which.max(b2)]
+  }
+  return (class) 
+}
+```
+
+Метод	потенциальных	функций
+-----------
