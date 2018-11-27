@@ -140,5 +140,36 @@ kwNN отличается от kNN тем, что для оценки близо
 | 4 | Гауссовское   | ![](https://latex.codecogs.com/gif.latex?G(r)=(2\pi&space;)^{-\frac{1}{2}}e^{-\frac{1}{2}r^{2}})|
 | 5 | Прямоугольное | ![](https://latex.codecogs.com/gif.latex?\Pi&space;(r)=\frac{1}{2}\left&space;[&space;r\leq&space;1\right&space;])|
 
+В этом алгоритме для классифицируемой точки строится окружность(окна). Точки не попавшие в эту окружность, с заданной шириной h, отсеиваются, а попавшим присваивается вес и суммируется их колличество. Так, классифицируемая точка присваивается классу с наибольшим весом.
+
+Реализация алгоритма:
+```diff
+ PW <- function(xl, z, h) 
+{ 
+  orderedXl <- sortObjectsByDist(xl, z) 
+  
+  for(i in 1:150){
+    orderedXl[i,3] <- func_ep(orderedXl[i,2],h) 
+  }
+  
+  b1 <- c('setosa', 'versicolor', 'virginica')
+  b2 <- c(0,0,0)
+  
+  b2[1]=sum(orderedXl[orderedXl$Species=='setosa', 3])
+  b2[2]=sum(orderedXl[orderedXl$Species=='versicolor', 3])
+  b2[3]=sum(orderedXl[orderedXl$Species=='virginica', 3])
+  
+  amo <- cbind(b1,b2)
+  
+  if(amo[1,2]==0&&amo[2,2]==0&&amo[3,2]==0){
+    class <- 'white'
+  }
+  else{
+    class <- b1[which.max(b2)]
+  }
+  return (class) 
+}
+```
+
 Метод	потенциальных	функций
 -----------
