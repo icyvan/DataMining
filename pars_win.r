@@ -22,40 +22,40 @@ sortObjectsByDist <- function(xl, z, metricFunction = euclideanDistance)
   return (orderedXl);
 }
 
-#прямоугольное окно
-#P <- function(rast, h) {
-#  if(abs(rast/h) <= 1){
-#    return (0.5)
-#  } else {
-#    return(0)
-#  }
-#}
+#ядро прямоугольное
+P <- function(rast, h) {
+  if(abs(rast/h) <= 1){
+    return (0.5)
+  } else {
+    return(0)
+  }
+}
 #ядро епачникова
-#E <-function(rast, h){
-# if(abs(rast/h) <= 1){
-#   return(3/4 * (1 - (rast/h)^2))
-# } else {
-#   return(0)
-#  }
-#}
-#квадратное ядро
-#K <-function(rast, h){
-#  if(abs(rast/h) <= 1){
-#    return(15/16 * (1 - (rast/h)^2)^2)
-# } else {
-#    return(0)
-#  }
-#}
-#ядро треугольлника
-#T <-function(rast, h){
-#  if(abs(rast/h) <= 1){
-#    return(1-abs(rast/h))
-#  } else {
-#    return(0)
-#  }
-#}
+E <-function(rast, h){
+ if(abs(rast/h) <= 1){
+   return(3/4 * (1 - (rast/h)^2))
+ } else {
+   return(0)
+  }
+}
+#квартическое ядро
+K <-function(rast, h){
+  if(abs(rast/h) <= 1){
+    return(15/16 * (1 - (rast/h)^2)^2)
+ } else {
+    return(0)
+  }
+}
+#ядро треугольное
+T <-function(rast, h){
+  if(abs(rast/h) <= 1){
+    return(1-abs(rast/h))
+  } else {
+    return(0)
+  }
+}
 #ядро гауссовское
-G <- function(rast, h){
+К <- function(rast, h){
   if(abs(rast/h) <= 1){
     return ( (2*pi)^(-1/2) * exp(-1/2 * (rast/h)^2 ) )
   } else {
@@ -64,35 +64,36 @@ G <- function(rast, h){
 }
 
 
-pars_win <- function(xl, z, h) 
+pars_win <- function(xl, z, h)              #в функцию заносим выборку, точку и ширину окна
 { 
-  orderedXl <- sortObjectsByDist(xl, z) 
+  orderedXl <- sortObjectsByDist(xl, z)     #сортируем выборку согласно классифицируемого объекта
   
-  for(i in 1:150){
-    orderedXl[i,3] <-  G(orderedXl[i,2],h) 
+  for(i in 1:150){                          #запускаем цикл
+    orderedXl[i,3] <-  T(orderedXl[i,2],h)  #применяем функцию ядра 
   }
   
-  b1 <- c('setosa', 'versicolor', 'virginica')
-  b2 <- c(0,0,0)
+  w1 <- c('setosa', 'versicolor', 'virginica')
+  w2 <- c(0,0,0)                        
   
-  b2[1]=sum(orderedXl[orderedXl$Species=='setosa', 3])
-  b2[2]=sum(orderedXl[orderedXl$Species=='versicolor', 3])
-  b2[3]=sum(orderedXl[orderedXl$Species=='virginica', 3])
+  #суммируем по классам
+  w2[1]=sum(orderedXl[orderedXl$Species=='setosa', 3])
+  w2[2]=sum(orderedXl[orderedXl$Species=='versicolor', 3])
+  w2[3]=sum(orderedXl[orderedXl$Species=='virginica', 3])
   
-  amo <- cbind(b1,b2)
+  amo <- cbind(w1,w2)                        #объединяем столбцы
   
-  if(amo[1,2]==0&&amo[2,2]==0&&amo[3,2]==0){
-    class <- 'white'
+  if(amo[1,2]==0&&amo[2,2]==0&&amo[3,2]==0){ #если веса классов равны 0, то
+    class <- 'white'                         #класс становится белым
   }
   else{
-    class <- b1[which.max(b2)]
+    class <- w1[which.max(w2)]               #иначе возвращается класс с максимальным весом
   }
   return (class) 
 }
 
 
 colors <- c("setosa" = "red", "versicolor" = "green3", "virginica" = "blue")
-plot(iris[, 3:4], pch = 21, bg = colors[iris$Species], col = colors[iris$Species], asp = 1, xlab = "Длина лепестка", ylab = "Ширина лепестка", main = "Ядро прямоугольника")
+plot(iris[, 3:4], pch = 21, bg = colors[iris$Species], col = colors[iris$Species], asp = 1, xlab = "Длина лепестка", ylab = "Ширина лепестка", main = "Ядро Треугольное")
 
 h=0.3
 xl <- iris[, 3:5]
