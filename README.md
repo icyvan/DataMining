@@ -173,11 +173,11 @@ pars_win <- function(xl, z, h)               #в функцию заносим �
 ```
 Ниже представвлены карты классификации для всех функций ядер:
 
-[](https://github.com/icyvan/DataMining/blob/master/images/E.png)
-[](https://github.com/icyvan/DataMining/blob/master/images/K.png)
-[](https://github.com/icyvan/DataMining/blob/master/images/P.png)
-[](https://github.com/icyvan/DataMining/blob/master/images/T.png)
-[](https://github.com/icyvan/DataMining/blob/master/images/G.png)
+![](https://github.com/icyvan/DataMining/blob/master/images/E.png)
+![](https://github.com/icyvan/DataMining/blob/master/images/K.png)
+![](https://github.com/icyvan/DataMining/blob/master/images/P.png)
+![](https://github.com/icyvan/DataMining/blob/master/images/T.png)
+![](https://github.com/icyvan/DataMining/blob/master/images/G.png)
 
 Сравнительная таблица
 ------------------
