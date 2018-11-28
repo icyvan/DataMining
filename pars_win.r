@@ -15,6 +15,7 @@ sortObjectsByDist <- function(xl, z, metricFunction = euclideanDistance)
     distances[i, ] <- c(i, metricFunction(xl[i, 1:n], z))
   }
   
+  #Создаём переменные, в которые вносятся названия и расстояния
   v2 <- distances[order(distances[,2], distances[,1]),]
   v1 <- xl[order(distances[, 2]), ]
   orderedXl <- cbind(v1,rast=v2[,2])
@@ -23,13 +24,13 @@ sortObjectsByDist <- function(xl, z, metricFunction = euclideanDistance)
 }
 
 #прямоугольное окно
-#P <- function(rast, h) {
-#  if(abs(rast/h) <= 1){
-#    return (0.5)
-#  } else {
-#    return(0)
-#  }
-#}
+P <- function(rast, h) {
+  if(abs(rast/h) <= 1){
+    return (0.5)
+  } else {
+    return(0)
+  }
+}
 #ядро епачникова
 #E <-function(rast, h){
 # if(abs(rast/h) <= 1){
@@ -55,14 +56,13 @@ sortObjectsByDist <- function(xl, z, metricFunction = euclideanDistance)
 #  }
 #}
 #ядро гауссовское
-G <- function(rast, h){
-  if(abs(rast/h) <= 1){
-    return ( (2*pi)^(-1/2) * exp(-1/2 * (rast/h)^2 ) )
-  } else {
-    return(0)
-  }
-}
-
+#G <- function(rast, h){
+#  if(abs(rast/h) <= 1){
+#    return ( (2*pi)^(-1/2) * exp(-1/2 * (rast/h)^2 ) )
+#  } else {
+#    return(0)
+#  }
+#}
 
 pars_win <- function(xl, z, h) 
 { 
@@ -72,20 +72,20 @@ pars_win <- function(xl, z, h)
     orderedXl[i,3] <-  G(orderedXl[i,2],h) 
   }
   
-  b1 <- c('setosa', 'versicolor', 'virginica')
-  b2 <- c(0,0,0)
+  s1 <- c('setosa', 'versicolor', 'virginica')
+  s2 <- c(0,0,0)
   
-  b2[1]=sum(orderedXl[orderedXl$Species=='setosa', 3])
-  b2[2]=sum(orderedXl[orderedXl$Species=='versicolor', 3])
-  b2[3]=sum(orderedXl[orderedXl$Species=='virginica', 3])
+  s2[1]=sum(orderedXl[orderedXl$Species=='setosa', 3])
+  s2[2]=sum(orderedXl[orderedXl$Species=='versicolor', 3])
+  s2[3]=sum(orderedXl[orderedXl$Species=='virginica', 3])
   
-  amo <- cbind(b1,b2)
+  amo <- cbind(b1,b2) #объединяем столбцы b1 и b2
   
-  if(amo[1,2]==0&&amo[2,2]==0&&amo[3,2]==0){
+  if(amo[1,2]==0&&amo[2,2]==0&&amo[3,2]==0){  
     class <- 'white'
   }
   else{
-    class <- b1[which.max(b2)]
+    class <- s1[which.max(s2)]
   }
   return (class) 
 }
@@ -94,7 +94,7 @@ pars_win <- function(xl, z, h)
 colors <- c("setosa" = "red", "versicolor" = "green3", "virginica" = "blue")
 plot(iris[, 3:4], pch = 21, bg = colors[iris$Species], col = colors[iris$Species], asp = 1, xlab = "Длина лепестка", ylab = "Ширина лепестка", main = "Ядро прямоугольника")
 
-h=0.3
+h=0.3 #ширина окна
 xl <- iris[, 3:5]
 z <- c(5,1.4)
 class <- pars_win(xl,z,h)
