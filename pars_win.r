@@ -93,7 +93,8 @@ pars_win <- function(xl, z, h)              #в функцию заносим в
 
 
 colors <- c("setosa" = "red", "versicolor" = "green3", "virginica" = "blue")
-plot(iris[, 3:4], pch = 21, bg = colors[iris$Species], col = colors[iris$Species], asp = 1, xlab = "Длина лепестка", ylab = "Ширина лепестка", main = "Ядро Треугольное")
+plot(iris[, 3:4], pch = 21, bg = colors[iris$Species], col = colors[iris$Species], asp = 1, 
+     xlab = "Длина лепестка", ylab = "Ширина лепестка", main = "Ядро Треугольное")
 
 h=0.3
 xl <- iris[, 3:5]
