@@ -144,28 +144,29 @@ kwNN отличается от kNN тем, что для оценки близо
 
 Реализация алгоритма:
 ```diff
- pars_win <- function(xl, z, h) 
+pars_win <- function(xl, z, h)               #в функцию заносим выборку, точку и ширину окна
 { 
-  orderedXl <- sortObjectsByDist(xl, z) 
+  orderedXl <- sortObjectsByDist(xl, z)      #сортируем выборку согласно классифицируемого объекта
   
-  for(i in 1:150){
-    orderedXl[i,3] <-  G(orderedXl[i,2],h) 
+  for(i in 1:150){                           #запускаем цикл
+    orderedXl[i,3] <-  T(orderedXl[i,2],h)   #применяем функцию ядра 
   }
   
-  s1 <- c('setosa', 'versicolor', 'virginica')
-  s2 <- c(0,0,0)
+  w1 <- c('setosa', 'versicolor', 'virginica')
+  w2 <- c(0,0,0)                        
   
-  s2[1]=sum(orderedXl[orderedXl$Species=='setosa', 3])
-  s2[2]=sum(orderedXl[orderedXl$Species=='versicolor', 3])
-  s2[3]=sum(orderedXl[orderedXl$Species=='virginica', 3])
+  #суммируем по классам
+  w2[1]=sum(orderedXl[orderedXl$Species=='setosa', 3])
+  w2[2]=sum(orderedXl[orderedXl$Species=='versicolor', 3])
+  w2[3]=sum(orderedXl[orderedXl$Species=='virginica', 3])
   
-  amo <- cbind(b1,b2) #объединяем столбцы b1 и b2
+  amo <- cbind(w1,w2)                        #объединяем столбцы
   
-  if(amo[1,2]==0&&amo[2,2]==0&&amo[3,2]==0){  
-    class <- 'white'
+  if(amo[1,2]==0&&amo[2,2]==0&&amo[3,2]==0){ #если веса классов равны 0, то
+    class <- 'white'                         #класс становится белым
   }
   else{
-    class <- s1[which.max(s2)]  #возвращаем класс с максимальным весом
+    class <- w1[which.max(w2)]               #иначе возвращается класс с максимальным весом
   }
   return (class) 
 }
