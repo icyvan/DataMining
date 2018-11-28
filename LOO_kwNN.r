@@ -66,4 +66,3 @@ points(arr2[p], arr[p], pch = 19, col = "red")
 =======
 plot(arr2, arr, type = "l", xlab = "q", ylab="LOO", main = "LOO kwNN")
 points(arr2[p], arr[p], pch = 19, col = "red")
->>>>>>> 8bf2e259c3b655b12de7897a50a944e09bcbfca2
