@@ -23,13 +23,13 @@ sortObjectsByDist <- function(xl, z, metricFunction = euclideanDistance)
 }
 
 #прямоугольное окно
-P <- function(rast, h) {
-  if(abs(rast/h) <= 1){
-    return (0.5)
-  } else {
-    return(0)
-  }
-}
+#P <- function(rast, h) {
+#  if(abs(rast/h) <= 1){
+#    return (0.5)
+#  } else {
+#    return(0)
+#  }
+#}
 #ядро епачникова
 #E <-function(rast, h){
 # if(abs(rast/h) <= 1){
@@ -55,13 +55,13 @@ P <- function(rast, h) {
 #  }
 #}
 #ядро гауссовское
-#G <- function(rast, h){
-#  if(abs(rast/h) <= 1){
-#    return ( (2*pi)^(-1/2) * exp(-1/2 * (rast/h)^2 ) )
-#  } else {
-#    return(0)
-#  }
-#}
+G <- function(rast, h){
+  if(abs(rast/h) <= 1){
+    return ( (2*pi)^(-1/2) * exp(-1/2 * (rast/h)^2 ) )
+  } else {
+    return(0)
+  }
+}
 
 
 pars_win <- function(xl, z, h) 
@@ -69,7 +69,7 @@ pars_win <- function(xl, z, h)
   orderedXl <- sortObjectsByDist(xl, z) 
   
   for(i in 1:150){
-    orderedXl[i,3] <-  P(orderedXl[i,2],h) 
+    orderedXl[i,3] <-  G(orderedXl[i,2],h) 
   }
   
   b1 <- c('setosa', 'versicolor', 'virginica')
@@ -90,36 +90,13 @@ pars_win <- function(xl, z, h)
   return (class) 
 }
 
-Loo <- function(h,xl)
-{
-  sum <- 0
-  for(i in 1:150){
-    if(i==1){
-      tmpXL <- xl[2:150,]
-    }
-    else if (i==150) {
-      tmpXL <- xl[1:149,]
-    }
-    else {
-      
-      tmpXL <- rbind(xl[1:i-1, ], xl[i+1:150,])
-    }
-    
-    xi <- c(xl[i,1], xl[i,2])
-    class <-pars_win(tmpXL,xi,h)
-    if(class != xl[i,3])
-      sum <- sum+1
-  }
-  sum <- sum/150
-  return(sum)
-}
 
 colors <- c("setosa" = "red", "versicolor" = "green3", "virginica" = "blue")
 plot(iris[, 3:4], pch = 21, bg = colors[iris$Species], col = colors[iris$Species], asp = 1, xlab = "Длина лепестка", ylab = "Ширина лепестка", main = "Ядро прямоугольника")
 
 h=0.3
 xl <- iris[, 3:5]
-z <- c(5,1)
+z <- c(5,1.4)
 class <- pars_win(xl,z,h)
 points(z[1], z[2], pch = 21, col = colors[class], asp = 1)
 
