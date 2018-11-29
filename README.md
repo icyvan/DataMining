@@ -124,7 +124,7 @@ kwNN отличается от kNN тем, что для оценки близо
 
 Метод парзеновского окна
 -----------
-В этом методе мы рассматриваем весовую функцию ![](https://latex.codecogs.com/gif.latex?w(i,u)), как функцию зависящую от расстояния ![](https://latex.codecogs.com/gif.latex?\rho&space;(u,x_{(i))}^{u}) :
+В этом методе мы рассматриваем весовую функцию ![](https://latex.codecogs.com/gif.latex?w(i,u)), как функцию зависящую от расстояния ![](https://latex.codecogs.com/gif.latex?\rho&space;(u,x^{u}_{(i)})) :
 ![](https://latex.codecogs.com/gif.latex?w(i,u)=K((1/h)\rho(u,x_{u}^{(i)}))), где *K*-функция ядра (окна).
 
 Парзеновская оценка плотности имеет вид:
