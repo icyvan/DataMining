@@ -26,7 +26,7 @@
 ---------------- 
 **Алгоритм ближайшего соседа - 1NN** относит классифицируемый объект ![](https://latex.codecogs.com/gif.latex?u\epsilon&space;X^l) к тому классу, которому принадлежит его ближайший сосед.
 
-Результат реализованного [1NN](https://github.com/icyvan/DataMining/blob/master/1NN.R):
+Результат реализованного [1NN](https://github.com/icyvan/DataMining/blob/master/metric%20classifiers/1NN.R):
 
 ![](https://github.com/icyvan/DataMining/blob/master/images/1NN_1.png)
 
@@ -73,7 +73,7 @@ kNN <- function(xl, z, k)  {
  return (class)
 }
 ```
-Результат реализацмм [kNN](https://github.com/icyvan/DataMining/blob/master/kNN.R):
+Результат реализацмм [kNN](https://github.com/icyvan/DataMining/blob/master/metric%20classifiers/kNN.R):
 
 ![](https://github.com/icyvan/DataMining/blob/master/images/kNN2.png)
 
@@ -89,7 +89,7 @@ kNN <- function(xl, z, k)  {
 
 Недостатком LOO является большая ресурсоёмкость, так как обучаться приходится L раз.
 
-Ниже представлены график зависимости [LOO](https://github.com/icyvan/DataMining/blob/master/kNN_LOO.r) от kNN и карта классификафии всех объектов:
+Ниже представлены график зависимости [LOO](https://github.com/icyvan/DataMining/blob/master/metric%20classifiers/kNN_LOO.r) от kNN и карта классификафии всех объектов:
 
 ![](https://github.com/icyvan/DataMining/blob/master/images/loo_knn.png)
 
@@ -116,7 +116,7 @@ kwNN отличается от kNN тем, что для оценки близо
   return (class)
 }
 ```
-Ниже представлены график зависимости [LOO от kwNN](https://github.com/icyvan/DataMining/blob/master/LOO_kwNN.r) и карта классификафии всех объектов:
+Ниже представлены график зависимости [LOO от kwNN](https://github.com/icyvan/DataMining/blob/master/metric%20classifiers/LOO_kwNN.r) и карта классификафии всех объектов:
 
 ![](https://github.com/icyvan/DataMining/blob/master/images/kwNN.png)
 
@@ -143,7 +143,7 @@ kwNN отличается от kNN тем, что для оценки близо
 
 В этом алгоритме для классифицируемой точки строится окружность(окна). Точки не попавшие в эту окружность, с заданной шириной h, отсеиваются, а попавшим присваивается вес и суммируется их колличество. Так, классифицируемая точка присваивается классу с наибольшим весом.
 
-Реализация алгоритма:
+Реализация алгоритма [pars_win](https://github.com/icyvan/DataMining/blob/master/metric%20classifiers/pars_win.r):
 ```diff
 pars_win <- function(xl, z, h)               #в функцию заносим выборку, точку и ширину окна
 { 
