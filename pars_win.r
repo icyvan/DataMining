@@ -80,13 +80,13 @@ pars_win <- function(xl, z, h)              #в функцию заносим в
   w2[2]=sum(orderedXl[orderedXl$Species=='versicolor', 3])
   w2[3]=sum(orderedXl[orderedXl$Species=='virginica', 3])
   
-  union <- cbind(w1,w2)                        #объединяем столбцы
+  union <- cbind(w1,w2)                                    #объединяем столбцы
   
-  if(union[1,2]==0&&union[2,2]==0&&union[3,2]==0){ #если веса классов равны 0, то
-    class <- 'white'                         #класс становится белым
+  if(union[1,2]==0&&union[2,2]==0&&union[3,2]==0){         #если веса классов равны 0, то
+    class <- 'white'                                       #класс становится белым
   }
   else{
-    class <- w1[which.max(w2)]               #иначе возвращается класс с максимальным весом
+    class <- w1[which.max(w2)]                             #иначе возвращается класс с максимальным весом
   }
   return (class) 
 }
