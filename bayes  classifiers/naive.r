@@ -53,7 +53,7 @@ main <- function(objectCounter = 500){
   xl <- rbind(xy1,xy2)
   
   colors <- c("purple", "#FF3300")
-  plot(xl[,1],xl[,2], pch = 21,main = "Наивный байесовский классификатор", xlab = 'Признак 1', ylab= 'ризнак 2', col = colors[xl[,3]], asp = 1, bg=colors[xl[,3]])
+  plot(xl[,1],xl[,2], pch = 21,main = "Наивный байесовский классификатор", xlab = 'Признак 1', ylab= 'Признак 2', col = colors[xl[,3]], asp = 1, bg=colors[xl[,3]])
   
   colors <- c("purple", "#FF3300")
   muh1 <- mu_with_hat(x1)
