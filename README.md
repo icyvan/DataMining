@@ -252,5 +252,5 @@ pars_win <- function(xl, z, h)               #в функцию заносим �
 где ![](https://latex.codecogs.com/gif.latex?\hat{\mu}_{yj}) и ![](https://latex.codecogs.com/gif.latex?\hat{\sigma}_{yj}) - оценки матожидания и дисперсии *j*-го признака, вычисленные по ![](https://latex.codecogs.com/gif.latex?X_{y}) - подвыборке класса *y*.
 
 Результат классификации классов, имеющих разные матрицы ковариации:
-![](https://github.com/icyvan/DataMining/blob/master/images/naive.png)
+![](https://github.com/icyvan/DataMining/blob/master/images/naive.png) 
 
