@@ -71,7 +71,7 @@ main <- function(objectCounter = 500){
       } else {
         class <- 2
       }
- 
+      #points(x1, x2, pch = 21, col=colors[class], asp = 1)
       x2 <- x2 + 0.2
     }
     x1 <- x1 + 0.2
