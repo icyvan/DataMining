@@ -263,7 +263,24 @@ pars_win <- function(xl, z, h)               #в функцию заносим �
 
 Линейные алгоритмы классификации
 -------
-Пусть ![](https://latex.codecogs.com/gif.latex?X=\mathbb{R}^{n}) и ![](https://latex.codecogs.com/gif.latex?Y=\left&space;\{&space;-1,&plus;1&space;\right&space;\}), обучающая выборка ![](https://latex.codecogs.com/gif.latex?X^{l}=(x_{i},y_{i})^{l}_{i=1}).
+Пусть ![](https://latex.codecogs.com/gif.latex?X=\mathbb{R}^{n}) и ![](https://latex.codecogs.com/gif.latex?Y=\left&space;\{&space;-1,&plus;1&space;\right&space;\}), ![](https://latex.codecogs.com/gif.latex?X^{l}=(x_{i},y_{i})^{l}_{i=1})-обучающая выборка .
 
-![](https://latex.codecogs.com/gif.latex?a(x,w)=sign&space;f(x,w)) - алгоритм классификации, где ![](https://latex.codecogs.com/gif.latex?f(x,w)) - разделяющая (дискриминантная) поверхность, ![](https://latex.codecogs.com/gif.latex?w) - вектор параметров.
+![](https://latex.codecogs.com/gif.latex?a(x,w)=sign&space;f(x,w)) - алгоритм классификации, где 
+
+![](https://latex.codecogs.com/gif.latex?f(x,w)) - разделяющая (дискриминантная) поверхность;
+
+![](https://latex.codecogs.com/gif.latex?w) - вектор параметров.
+
+Уравнение ![](https://latex.codecogs.com/gif.latex?f(x,w)=0) - разделяющая поверхность.
+
+Величина ![](https://latex.codecogs.com/gif.latex?M_{i}(w)=y_{i}\left&space;\langle&space;x_{i},w&space;\right&space;\rangle) называется отступом объекта относительно алгоритма классификации. Если ![](https://latex.codecogs.com/gif.latex?M_{i}(w)<&space;0), тогда алгоритм ![](https://latex.codecogs.com/gif.latex?a(x,w)) ошибается на ![](https://latex.codecogs.com/gif.latex?x_{i}).
+
+Минимизация эмпирического риска
+![](https://latex.codecogs.com/gif.latex?Q(w)=\sum_{i=1}^{l}[M_{i}(w)<&space;0]\leqslant&space;Q{}'(w)=\sum_{i=1}^{l}L(M_{i}(w))\rightarrow&space;\min_{w}), где функция потерь ![](https://latex.codecogs.com/gif.latex?L(M)) невозрастающая, неотрицательная, происходит путём подбора оптимального вектора весов *w*, а для этого мы будем пользоваться методом стохастического градиента.
+
+Метод стохастического градиента
+----
+
+
+
 
