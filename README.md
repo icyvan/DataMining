@@ -280,7 +280,6 @@ pars_win <- function(xl, z, h)               #в функцию заносим �
 
 Метод стохастического градиента
 ----
-
-
+Сначала выбираем начальное приближение ![](https://latex.codecogs.com/gif.latex?w^{(0)}). Далее высчитывается текущая оценка функционала ![](https://latex.codecogs.com/gif.latex?Q(w;X^{l})=\sum_{i=1}^{l}L(\left&space;\langle&space;w,x_{i}&space;\right&space;\rangle&space;y_{i})). Затем запускается итерационный процесс ![](https://latex.codecogs.com/gif.latex?w^{(t&plus;1)}=w^{(t)}-\eta&space;\bigtriangledown&space;Q(w^{(t)}),&space;\bigtriangledown&space;Q(w)=\left&space;(&space;\frac{\partial&space;Q(w)}{\partial&space;w_{j}}&space;\right&space;)^{n}_{j=1}),  где ![](https://latex.codecogs.com/gif.latex?\eta) - градиентный шаг, так же называемый темпом обучения
 
 
