@@ -314,7 +314,7 @@ https://latex.codecogs.com/gif.latex?X=\mathbb{R}^{n&plus;1},&space;Y\subseteq&s
 ADALINE
 -------
 Задача регрессии: ![](https://latex.codecogs.com/gif.latex?X=\mathbb{R}^{n&plus;1},&space;Y\subseteq&space;\mathbb{R}),
-https://latex.codecogs.com/gif.latex?L(a,y)=(a-y)^{2} - адаптивный линейный элемент (ADALINE).
+![](https://latex.codecogs.com/gif.latex?L(a,y)=(a-y)^{2}) - квадратичная функция потерь. Адаптивный линейный элемент (ADALINE).
 
 Градиентный шаг - дельта-правило (delta-rule):
 ![](https://latex.codecogs.com/gif.latex?w=w-\eta&space;((w,x_{i})-y_{i})x_i,&space;(w,x_{i})-y_{i}=\Delta&space;_{i}) - ошибка алгоритма на объекте ![](https://latex.codecogs.com/gif.latex?x_i).
