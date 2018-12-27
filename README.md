@@ -304,7 +304,7 @@ Aлгоритм:
 4: выбрать объект ![](https://latex.codecogs.com/gif.latex?x_{i}) из ![](https://latex.codecogs.com/gif.latex?X^{l}) (например, случайно)
 
 5: вычислить потерю ![](https://latex.codecogs.com/gif.latex?\varepsilon&space;_{i}=L(\left&space;\langle&space;w,x_{i}&space;\right&space;\rangle&space;y_{i}))
-https://latex.codecogs.com/gif.latex?X=\mathbb{R}^{n&plus;1},&space;Y\subseteq&space;\mathbb{R}
+ ![](https://latex.codecogs.com/gif.latex?X=\mathbb{R}^{n&plus;1},&space;Y\subseteq&space;\mathbb{R})
 6: градиентный шаг: ![](https://latex.codecogs.com/gif.latex?w=w-\eta&space;L(\left&space;\langle&space;w,x_{i}&space;\right&space;\rangle&space;y_{i})x_{i}y_{i})
 
 7: оценить значение функционала: ![](https://latex.codecogs.com/gif.latex?Q=(1-\lambda&space;)Q&plus;\lambda&space;\varepsilon&space;_{i})
