@@ -288,18 +288,18 @@ pars_win <- function(xl, z, h)               #в функцию заносим �
 Затем запускается итерационный процесс ![](https://latex.codecogs.com/gif.latex?w^{(t&plus;1)}=w^{(t)}-\eta&space;\bigtriangledown&space;Q(w^{(t)}),&space;\bigtriangledown&space;Q(w)=\left&space;(&space;\frac{\partial&space;Q(w)}{\partial&space;w_{j}}&space;\right&space;)^{n}_{j=1}),  где ![](https://latex.codecogs.com/gif.latex?\eta) - градиентный шаг, так же называемый темпом обучения.
 Или ![](https://latex.codecogs.com/gif.latex?w^{(t&plus;1)}=w^{(t)}-\eta\sum_{i=1}^{l}L{}'((w^{(t)},x_{i})y_{i})x_{i}y_{i})
 
-Aлгоритм:
+**Aлгоритм:**
 
-Вход: выборка ![](https://latex.codecogs.com/gif.latex?X^{l}); темп обучения ![](https://latex.codecogs.com/gif.latex?\eta); параметр ![](https://latex.codecogs.com/gif.latex?\lambda)
+**Вход: выборка** ![](https://latex.codecogs.com/gif.latex?X^{l}); темп обучения ![](https://latex.codecogs.com/gif.latex?\eta); параметр ![](https://latex.codecogs.com/gif.latex?\lambda)
 
-Выход: веса ![](https://latex.codecogs.com/gif.latex?w_{0},w_{1},...,w_{n};)
+**Выход:** веса ![](https://latex.codecogs.com/gif.latex?w_{0},w_{1},...,w_{n};)
 
 1: инициализировать  веса ![](https://latex.codecogs.com/gif.latex?w_{j},&space;j=0,...,n.)
 
 2: инициализировать текущую оценку функционала:
 ![](https://latex.codecogs.com/gif.latex?Q=\sum_{i=1}^{l}L(\left&space;\langle&space;w,x_{i}&space;\right&space;\rangle&space;y_{i}))
 
-3: повторять
+3: **повторять**
 
 4: выбрать объект ![](https://latex.codecogs.com/gif.latex?x_{i}) из ![](https://latex.codecogs.com/gif.latex?X^{l}) (например, случайно)
 
