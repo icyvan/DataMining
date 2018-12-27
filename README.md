@@ -303,7 +303,7 @@ Aлгоритм:
 
 4: выбрать объект ![](https://latex.codecogs.com/gif.latex?x_{i}) из ![](https://latex.codecogs.com/gif.latex?X^{l}) (например, случайно)
 
-5: вычислить потерю![](https://latex.codecogs.com/gif.latex?\varepsilon&space;_{i}=L(\left&space;\langle&space;w,x_{i}&space;\right&space;\rangle&space;y_{i}))
+5: вычислить потерю ![](https://latex.codecogs.com/gif.latex?\varepsilon&space;_{i}=L(\left&space;\langle&space;w,x_{i}&space;\right&space;\rangle&space;y_{i}))
 https://latex.codecogs.com/gif.latex?X=\mathbb{R}^{n&plus;1},&space;Y\subseteq&space;\mathbb{R}
 6: градиентный шаг: ![](https://latex.codecogs.com/gif.latex?w=w-\eta&space;L(\left&space;\langle&space;w,x_{i}&space;\right&space;\rangle&space;y_{i})x_{i}y_{i})
 
@@ -313,10 +313,10 @@ https://latex.codecogs.com/gif.latex?X=\mathbb{R}^{n&plus;1},&space;Y\subseteq&s
 
 ADALINE
 -------
-Задача регрессии:![](https://latex.codecogs.com/gif.latex?X=\mathbb{R}^{n&plus;1},&space;Y\subseteq&space;\mathbb{R}),
+Задача регрессии: ![](https://latex.codecogs.com/gif.latex?X=\mathbb{R}^{n&plus;1},&space;Y\subseteq&space;\mathbb{R}),
 https://latex.codecogs.com/gif.latex?L(a,y)=(a-y)^{2} - адаптивный линейный элемент (ADALINE).
 
-Градиентный шаг - дельта-правило(delta-rule):
+Градиентный шаг - дельта-правило (delta-rule):
 ![](https://latex.codecogs.com/gif.latex?w=w-\eta&space;((w,x_{i})-y_{i})x_i,&space;(w,x_{i})-y_{i}=\Delta&space;_{i}) - ошибка алгоритма на объекте ![](https://latex.codecogs.com/gif.latex?x_i).
 
 Программная реализация стохастического градиента для ADALINE:
@@ -392,3 +392,6 @@ sg.ADALINE <- function(xl, eta = 1, lambda = 1/6)
 
 Результат программной реализации ADALINE:
 ![](https://github.com/icyvan/DataMining/blob/master/images/adaline.png)
+
+Персептрон Розенблатта
+----------
