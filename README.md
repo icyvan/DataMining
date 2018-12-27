@@ -304,9 +304,91 @@ Aлгоритм:
 4: выбрать объект ![](https://latex.codecogs.com/gif.latex?x_{i}) из ![](https://latex.codecogs.com/gif.latex?X^{l}) (например, случайно)
 
 5: вычислить потерю![](https://latex.codecogs.com/gif.latex?\varepsilon&space;_{i}=L(\left&space;\langle&space;w,x_{i}&space;\right&space;\rangle&space;y_{i}))
-
+https://latex.codecogs.com/gif.latex?X=\mathbb{R}^{n&plus;1},&space;Y\subseteq&space;\mathbb{R}
 6: градиентный шаг: ![](https://latex.codecogs.com/gif.latex?w=w-\eta&space;L(\left&space;\langle&space;w,x_{i}&space;\right&space;\rangle&space;y_{i})x_{i}y_{i})
 
 7: оценить значение функционала: ![](https://latex.codecogs.com/gif.latex?Q=(1-\lambda&space;)Q&plus;\lambda&space;\varepsilon&space;_{i})
 
 8: пока значение *Q* и/или веса *w* не стабилизируются.
+
+ADALINE
+-------
+Задача регрессии:![](https://latex.codecogs.com/gif.latex?X=\mathbb{R}^{n&plus;1},&space;Y\subseteq&space;\mathbb{R}),
+https://latex.codecogs.com/gif.latex?L(a,y)=(a-y)^{2} - адаптивный линейный элемент (ADALINE).
+
+Градиентный шаг - дельта-правило(delta-rule):
+![](https://latex.codecogs.com/gif.latex?w=w-\eta&space;((w,x_{i})-y_{i})x_i,&space;(w,x_{i})-y_{i}=\Delta&space;_{i}) - ошибка алгоритма на объекте ![](https://latex.codecogs.com/gif.latex?x_i).
+
+Программная реализация стохастического градиента для ADALINE:
+```diff
+# Стохастический градиент для ADALINE
+sg.ADALINE <- function(xl, eta = 1, lambda = 1/6)
+{
+  l <- dim(xl)[1]
+  n <- dim(xl)[2] - 1
+  w <- c(1/2, 1/2, 1/2)
+  iterCount <- 0
+  
+  # инициализация Q
+  Q <- 0
+  for (i in 1:l)
+  {
+    # вычисление скалярного произведения <w,x>
+    wx <- sum(w * xl[i, 1:n])
+    # вычисление отступа
+    margin <- wx * xl[i, n + 1]
+    
+    Q <- Q + lossQuad(margin)
+  }
+  
+  repeat
+  {
+    # вычисление отступа для все объектов обучаемой выборки
+    margins <- array(dim = l)
+    for (i in 1:l)
+    {
+      xi <- xl[i, 1:n]
+      yi <- xl[i, n + 1]
+      
+      margins[i] <- crossprod(w, xi) * yi
+    }
+    
+    # выбор ошибочных объектов
+    errorIndexes <- which(margins <= 0)
+    
+    if (length(errorIndexes) > 0)
+    {
+      # рандомный выбор индексов из ошибок
+      i <- sample(errorIndexes, 1)
+      iterCount <- iterCount + 1
+      
+      xi <- xl[i, 1:n]
+      yi <- xl[i, n + 1]
+      
+      # вычисление скалярного произведения <w,xi>
+      wx <- sum(w * xi)
+      
+      # производится шаг градиента
+      margin <- wx * yi
+      
+      # вычисление ошибок
+      ex <- lossQuad(margin)
+      eta <- 1 / sqrt(sum(xi * xi))
+      w <- w - eta * (wx - yi) * xi
+      
+      # вычисление нового Q
+      Qprev <- Q
+      Q <- (1 - lambda) * Q + lambda * ex
+    }
+    else
+    {
+      break
+    }
+  }
+  return (w)
+}
+
+```
+
+Результат программной реализации ADALINE:
+![](https://github.com/icyvan/DataMining/blob/master/images/adaline.png)
