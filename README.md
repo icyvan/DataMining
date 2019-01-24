@@ -436,7 +436,7 @@ sg.ADALINE <- function(xl, eta = 1, lambda = 1/6)
 ```
 
 Результат программной реализации ADALINE:
-![](https://github.com/icyvan/DataMining/blob/master/images/adaline.png)
+![](https://github.com/icyvan/DataMining/blob/master/images/adaline2.png)
 
 Персептрон Розенблатта
 ----------
