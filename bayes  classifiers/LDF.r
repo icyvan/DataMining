@@ -6,19 +6,13 @@ u <- apply(x,2,mean)
 
 up <- apply(subset(x,Y==+1), 2, mean)
 un <- apply(subset(x,Y==-1), 2, mean)
-#кол-во объектов с меткой 1 = 50
 np <- sum(Y==+1)
-
-#кол-во объектов с меткой -1 = 100
 nn <- sum(Y==-1)
 
-#вектор -пи до пи с шаго 0.05
 t <- seq(- pi , pi, 0.05)
 
-#
 uv <- cbind(cos(t), sin(t))
 
-#100 * ((2.6, 0.7) - (3.7, 1.1))  * 
 SB <- nn * (un - u) %*% t(up - u)
 
 scatter <- function(v){
@@ -41,7 +35,7 @@ rxp <- round(range(xp),0)+c(-1,1)
 xpn <- subset(xp,Y==-1)
 xpp <- subset(xp,Y==+1)
 b = (mean(xpp) * sd(xpn) + mean(xpn) * sd(xpp)) /(sd(xpp) + sd(xpn))
-plot(x,col=Y+3,asp=1, xlab = "Sepal.Length", ylab = "Sepal.Width", main = paste("�������� ������������ ������"))
+plot(x,col=Y+3,asp=1, xlab = "Sepal.Length", ylab = "Sepal.Width", main = paste("Ëèíåéíûé äèñêðèìèíàíò Ôèøåðà"))
 par(lwd=2)
 abline(b/muv[2],-muv[1]/muv[2])
 distance.from.plane = function(x,w,b) {
