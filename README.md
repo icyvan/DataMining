@@ -262,7 +262,34 @@ pars_win <- function(xl, z, h)               #в функцию заносим �
 
 Постановочный алгоритм
 --------
-Если мы оценим параметры функции правдоподобия ![](https://latex.codecogs.com/gif.latex?\hat{\mu}_{y}) и ![](https://latex.codecogs.com/gif.latex?\hat{\Sigma&space;}_{y}) по частям обучающей выборки ![](https://latex.codecogs.com/gif.latex?X^{l}_{y}) для каждого класса ![](https://latex.codecogs.com/gif.latex?y\in&space;Y), а затем эти выборочные оценки подставим в оптимальный байесовский классификатор, то получим подстановочный алгоритм plug-in.
+Если мы оценим параметры функции правдоподобия ![](https://latex.codecogs.com/gif.latex?\hat{\mu}_{y}) и ![](https://latex.codecogs.com/gif.latex?\hat{\Sigma&space;}_{y}) по частям обучающей выборки ![](https://latex.codecogs.com/gif.latex?X^{l}_{y}) для каждого класса ![](https://latex.codecogs.com/gif.latex?y\in&space;Y), а затем эти выборочные оценки подставим в оптимальный байесовский классификатор, то получим подстановочный алгоритм **plug-in**. Это байесовский нормальный классификатор оценки параметров гауссовской плотности, которого имеют вид: 
+
+![](https://latex.codecogs.com/gif.latex?\hat{\mu}=\frac{1}{m}\sum_{i=1}^{m}x_{i};\hat{\Sigma}=\frac{1}{m}\sum_{i=1}^{m}(x_{i}-\hat{\mu&space;})(x_{i}-\hat{\mu&space;})^{T})
+
+Cлучай, когда разделяющая кривая является **эллипсом**.
+
+Первый класс: ![](https://latex.codecogs.com/gif.latex?\Sigma&space;=\begin{pmatrix}&space;3&space;&&space;0\\&space;0&&space;2&space;\end{pmatrix}) и ![](https://latex.codecogs.com/gif.latex?\mu&space;=&space;(15,2))
+
+Второй класс: ![](https://latex.codecogs.com/gif.latex?\Sigma&space;=&space;\begin{pmatrix}&space;23&space;&0&space;\\&space;0&space;&&space;5&space;\end{pmatrix}) и ![](https://latex.codecogs.com/gif.latex?\mu&space;=&space;(25,2))
+
+![](https://github.com/icyvan/DataMining/blob/master/images/plug-in.png)
+
+Cлучай, когда разделяющая кривая является **парабола**.
+
+Первый класс: ![](https://latex.codecogs.com/gif.latex?\Sigma&space;=\begin{pmatrix}&space;10&space;&&space;0\\&space;0&&space;1&space;\end{pmatrix}) и ![](https://latex.codecogs.com/gif.latex?\mu&space;=&space;(-1,0))
+
+Второй класс: ![](https://latex.codecogs.com/gif.latex?\Sigma&space;=&space;\begin{pmatrix}&space;1&space;&0&space;\\&space;0&space;&&space;5&space;\end{pmatrix}) и ![](https://latex.codecogs.com/gif.latex?\mu&space;=&space;(3,0))
+
+![](https://github.com/icyvan/DataMining/blob/master/images/plag-in2.png)
+
+Cлучай, когда разделяющая кривая является **гипербола**.
+
+Первый класс: ![](https://latex.codecogs.com/gif.latex?\Sigma&space;=\begin{pmatrix}&space;5&space;&&space;0\\&space;0&&space;1&space;\end{pmatrix}) и ![](https://latex.codecogs.com/gif.latex?\mu&space;=&space;(-1,0))
+
+Второй класс: ![](https://latex.codecogs.com/gif.latex?\Sigma&space;=&space;\begin{pmatrix}&space;1&space;&0&space;\\&space;0&space;&&space;2&space;\end{pmatrix}) и ![](https://latex.codecogs.com/gif.latex?\mu&space;=&space;(3,0))
+
+![](https://github.com/icyvan/DataMining/blob/master/images/plug-in3.png)
+
 
 Линейный дискриминант Фишера
 --------
