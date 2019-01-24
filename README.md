@@ -280,7 +280,7 @@ Cлучай, когда разделяющая кривая является **�
 
 Второй класс: ![](https://latex.codecogs.com/gif.latex?\Sigma&space;=&space;\begin{pmatrix}&space;1&space;&0&space;\\&space;0&space;&&space;5&space;\end{pmatrix}) и ![](https://latex.codecogs.com/gif.latex?\mu&space;=&space;(3,0))
 
-![](https://github.com/icyvan/DataMining/blob/master/images/plug-in.png)
+![](https://github.com/icyvan/DataMining/blob/master/images/plag-in2.png)
 
 Cлучай, когда разделяющая кривая является **гипербола**.
 
