@@ -52,10 +52,10 @@ main <- function(objectCounter = 500){
   
   xl <- rbind(xy1,xy2)
   
-  colors <- c("purple", "#FF3300")
-  plot(xl[,1],xl[,2], pch = 21,main = "ÐÐ°Ð¸Ð²Ð½Ñ‹Ð¹ Ð±Ð°Ð¹ÐµÑÐ¾Ð²ÑÐºÐ¸Ð¹ ÐºÐ»Ð°ÑÑÐ¸Ñ„Ð¸ÐºÐ°Ñ‚Ð¾Ñ€", xlab = 'ÐŸÑ€Ð¸Ð·Ð½Ð°Ðº 1', ylab= 'ÐŸÑ€Ð¸Ð·Ð½Ð°Ðº 2', col = colors[xl[,3]], asp = 1, bg=colors[xl[,3]])
+  colors <- c("violet", "yellow")
+  plot(xl[,1],xl[,2], pch = 21,main = "Íàèâíûé áàéåñîâñêèé êëàññèôèêàòîð", xlab = 'Ïðèçíàê 1', ylab= 'Ïðèçíàê 2', col = colors[xl[,3]], asp = 1, bg=colors[xl[,3]])
   
-  colors <- c("purple", "#FF3300")
+  colors <- c("violet", "yellow")
   muh1 <- mu_with_hat(x1)
   muh2 <- mu_with_hat(x2)         
   sigma1 <- get_sigma_with_hat(x1, muh1)
@@ -65,13 +65,16 @@ main <- function(objectCounter = 500){
   while(x1 < 20){
     x2 <- -8;
     while(x2 < 13){          
-      class <- 0;
-      if(naive(c(x1,x2), muh1, sigma1, 1, 0.5) > naive(c(x1,x2), muh2, sigma2, 1, 0.5)){
-        class <- 1
-      } else {
-        class <- 2
-      }
-      #points(x1, x2, pch = 21, col=colors[class], asp = 1)
+      class <- 0; 
+      if(naive(c(x1,x2), muh1, sigma1, 1, 0.5) > naive(c(x1,x2), muh2, sigma2, 1, 0.5)){ 
+        class <- 1 
+        col1 = adjustcolor(colors[class],abs(naive(c(x1,x2), muh1, sigma1, 1, 0.9))*0.1) 
+      } else { 
+        class <- 2 
+        col1 = adjustcolor(colors[class],abs(naive(c(x1,x2), muh2, sigma2, 1, 0.9))*0.1) 
+      } 
+      points(x1, x2, pch = 21, bg=col1, asp = 1)
+      
       x2 <- x2 + 0.2
     }
     x1 <- x1 + 0.2
