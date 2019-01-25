@@ -446,6 +446,12 @@ sg.ADALINE <- function(xl, eta = 1, lambda = 1/6)
 
 **если** ![](https://latex.codecogs.com/gif.latex?\left&space;\langle&space;w,x_{i}&space;\right&space;\rangle&space;y_{i}&space;<&space;0) **то** ![](https://latex.codecogs.com/gif.latex?w=w&plus;\eta&space;x_{i}y_{i})
 
+![](https://github.com/icyvan/DataMining/blob/master/images/Perceptron.png)
+
+Логистическая	регрессия
+-------
+
+
 
 
 
