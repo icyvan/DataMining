@@ -25,29 +25,29 @@ estimateFisherCovarianceMatrix <- function(objects1, objects2, mu1, mu2)
   }
   return (sigma)
 }
-## Ãåíåðèðóåì òåñòîâûå äàííûå
+# Ð“ÐµÐ½ÐµÑ€Ð¸Ñ€ÑƒÐµÐ¼ Ñ‚ÐµÑÑ‚Ð¾Ð²Ñ‹Ðµ Ð´Ð°Ð½Ð½Ñ‹Ðµ
 Sigma1 <- matrix(c(5, 0, 0, 1), 2, 2)
 Sigma2 <- matrix(c(5, 0, 0, 1), 2, 2)
 Mu1 <- c(5, 1)
 Mu2 <- c(15, 0)
 xy1 <- mvrnorm(n=ObjectsCountOfEachClass, Mu1, Sigma1)
 xy2 <- mvrnorm(n=ObjectsCountOfEachClass, Mu2, Sigma2)
-## Ñîáèðàåì äâà êëàññà â îäíó âûáîðêó
+# Ð¡Ð¾Ð±Ð¸Ñ€Ð°ÐµÐ¼ Ð´Ð²Ð° ÐºÐ»Ð°ÑÑÐ° Ð² Ð¾Ð´Ð½Ñƒ Ð²Ñ‹Ð±Ð¾Ñ€ÐºÑƒ
 xl <- rbind(cbind(xy1, 1), cbind(xy2, 2))
-## Ðèñóåì îáó÷àþùóþ âûáîðêó
+# Ð Ð¸ÑÑƒÐµÐ¼ Ð¾Ð±ÑƒÑ‡Ð°ÑŽÑ‰ÑƒÑŽ Ð²Ñ‹Ð±Ð¾Ñ€ÐºÑƒ
 colors <- c("yellow", "violet")
 plot(xl[,1], xl[,2], pch = 21, bg = colors[xl[,3]], asp = 1)
-## Îöåíèâàíèå
+# ÐžÑ†ÐµÐ½Ð¸Ð²Ð°Ð½Ð¸Ðµ
 objectsOfFirstClass <- xl[xl[,3] == 1, 1:2]
 objectsOfSecondClass <- xl[xl[,3] == 2, 1:2]
 
 mu1 <- estimateMu(objectsOfFirstClass)
 mu2 <- estimateMu(objectsOfSecondClass)
 Sigma <- estimateFisherCovarianceMatrix(objectsOfFirstClass, objectsOfSecondClass, mu1, mu2)
-## Ïîëó÷àåì êîýôôèöèåíòû ËÄÔ
+# ÐŸÐ¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ ÐºÐ¾ÑÑ„Ñ„Ð¸Ñ†Ð¸ÐµÐ½Ñ‚Ñ‹ Ð›Ð”Ð¤
 inverseSigma <- solve(Sigma)
 alpha <- inverseSigma %*% t(mu1 - mu2)
 mu_st <- (mu1 + mu2) / 2
 beta <- mu_st %*% alpha
-## Ðèñóåì ËÄÔ
+# Ð Ð¸ÑÑƒÐµÐ¼ Ð›Ð”Ð¤
 abline(beta / alpha[2,1], -alpha[1,1]/alpha[2,1], col = "red", lwd = 3)
