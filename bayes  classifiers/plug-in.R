@@ -10,6 +10,7 @@ estimateMu <- function(objects)
   return(mu)
 }
 
+# Восстанивление ковариационной матрицы нормального распределения
 estimateCovarianceMatrix <- function(objects, mu)
 {
   rows <- dim(objects)[1]
@@ -21,9 +22,10 @@ estimateCovarianceMatrix <- function(objects, mu)
   }
   return (sigma)
 }
-
+# Получение коэффициентов
 getPlugInDiskriminantCoeffs <- function(mu1, sigma1, mu2, sigma2)
 {
+  # Уравнение линии: a*x1^2 + b*x1*x2 + c*x2 + d*x1 + e*x2
   invSigma1 <- solve(sigma1)
   invSigma2 <- solve(sigma2)
   f <- log(abs(det(sigma1))) - log(abs(det(sigma2))) +
@@ -39,16 +41,20 @@ getPlugInDiskriminantCoeffs <- function(mu1, sigma1, mu2, sigma2)
   return (c("x^2" = a, "xy" = b, "y^2" = c, "x" = d, "y" = e, "1" = f))
 }
 
+# Колличество объектов в каждом классе
 ObjectsCountOfEachClass <- 200
+# Генерируем тестовые данные
 Sigma1 <- matrix(c(5, 0, 0, 1), 2, 2)
 Sigma2 <- matrix(c(1, 0, 0, 2), 2, 2)
 Mu1 <- c(-1, 0)
 Mu2 <- c(3, 0)
 xy1 <- mvrnorm(n=ObjectsCountOfEachClass, Mu1, Sigma1)
 xy2 <- mvrnorm(n=ObjectsCountOfEachClass, Mu2, Sigma2)
+# Собираем два класса в одну выборку
 xl <- rbind(cbind(xy1, 1), cbind(xy2, 2))
 colors <- c("yellow", "violet")
 plot(xl[,1], xl[,2], pch = 21, bg = colors[xl[,3]], asp = 1)
+# Оценивание
 objectsOfFirstClass <- xl[xl[,3] == 1, 1:2]
 objectsOfSecondClass <- xl[xl[,3] == 2, 1:2]
 mu1 <- estimateMu(objectsOfFirstClass)
@@ -56,7 +62,7 @@ mu2 <- estimateMu(objectsOfSecondClass)
 sigma1 <- estimateCovarianceMatrix(objectsOfFirstClass, mu1)
 sigma2 <- estimateCovarianceMatrix(objectsOfSecondClass, mu2)
 coeffs <- getPlugInDiskriminantCoeffs(mu1, sigma1, mu2, sigma2)
+# Рисуем дискриминантую функцию – красная линия
 x <- y <- seq(-10, 20, len=100)
-z <- outer(x, y, function(x, y) coeffs["x^2"]*x^2 + coeffs["xy"]*x*y
- + coeffs["y^2"]*y^2 + coeffs["x"]*x + coeffs["y"]*y + coeffs["1"])
+z <- outer(x, y, function(x, y) coeffs["x^2"]*x^2 + coeffs["xy"]*x*y + coeffs["y^2"]*y^2 + coeffs["x"]*x + coeffs["y"]*y + coeffs["1"])
 contour(x, y, z, levels=0, drawlabels=FALSE, lwd = 3, col = "red", add = TRUE)
